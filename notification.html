@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>test msg</title>
+	<meta charset="utf-8">
+</head>
+<body>
+<h2>消息通知功能</h2>
+</body>
+<script type="text/javascript">
+if(window.Notification && Notification.permission !== "denied") {
+	Notification.requestPermission(function(status) {
+		setInterval(function(){
+			var n = new Notification('通知标题', { body: '这里是通知内容！' }); 
+			n.onclick = function(){
+				window.focus();
+				n.close();
+			},
+			n.onshow = function(){
+				setTimeout(n.close.bind(n),1000)
+			}
+		},2000)
+	});
+}
+
+</script>
+</html>
